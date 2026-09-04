@@ -370,6 +370,94 @@ body.light-mode .bio-text p {
   color: var(--indigo);
 }
 
+.project-content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  padding: 26px;
+  border: 1px solid rgba(238, 235, 218, 0.18);
+  border-radius: 18px;
+  background-color: rgba(40, 43, 74, 0.72);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background-color 0.5s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+body.light-mode .project-card {
+  border-color: rgba(40, 43, 74, 0.14);
+  background-color: rgba(40, 43, 74, 0.06);
+}
+
+.project-card h3 {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 1.3rem;
+}
+
+.project-demo {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  margin-bottom: 18px;
+  border: 1px solid rgba(201, 166, 104, 0.28);
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.project-card > p {
+  margin: 0 0 22px;
+  line-height: 1.6;
+}
+
+.project-links {
+  display: grid;
+  gap: 10px;
+}
+
+.project-link {
+  display: grid;
+  grid-template-columns: 24px 1fr 20px;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1px solid rgba(201, 166, 104, 0.35);
+  border-radius: 10px;
+  color: var(--cream);
+  text-decoration: none;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+body.light-mode .project-link {
+  color: var(--indigo);
+}
+
+.project-link:hover {
+  background-color: var(--accent);
+  color: var(--indigo);
+  transform: translateX(4px);
+}
+
+.project-link > i:first-child {
+  font-size: 1.25rem;
+}
+
+.project-link > i:last-child {
+  justify-self: end;
+}
+
 /* ---------- Generic section block (Experience / Contact placeholders) ---------- */
 .section-block {
   max-width: 800px;
@@ -642,6 +730,10 @@ body.light-mode .statusbar {
   .about-content {
     flex-direction: column;
     text-align: center;
+  }
+
+  .project-content {
+    grid-template-columns: 1fr;
   }
 }
 
