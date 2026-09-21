@@ -78,13 +78,45 @@ function typeLoop() {
 
 typeLoop();
 
-// Contact form (front-end only — see note below)
+// Contact form
 const contactForm = document.getElementById("contact-form");
+const formNotification = document.getElementById("form-notification");
+const recipientEmail = "joannaisabell97@gmail.com";
+let notificationTimer;
 
-contactForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  // NOTE: this form has no backend yet. Wire it up to a service like
-  // Formspree, EmailJS, or your own endpoint to actually receive messages.
-  alert("Thanks for reaching out! (Form isn't connected to a backend yet.)");
-  contactForm.reset();
-});
+function showFormNotification(message) {
+  if (!formNotification) return;
+
+  formNotification.textContent = message;
+  formNotification.classList.add("show");
+
+  clearTimeout(notificationTimer);
+  notificationTimer = setTimeout(() => {
+    formNotification.classList.remove("show");
+  }, 2500);
+}
+
+if (contactForm) {
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(contactForm);
+    const name = (formData.get("name") || "").toString().trim();
+    const senderEmail = (formData.get("email") || "").toString().trim();
+    const message = (formData.get("message") || "").toString().trim();
+
+    if (!name || !senderEmail || !message) {
+      showFormNotification("Please fill in all fields.");
+      return;
+    }
+
+    const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${senderEmail}\n\nMessage:\n${message}`,
+    );
+
+    window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+    contactForm.reset();
+    showFormNotification("Email sent!");
+  });
+}

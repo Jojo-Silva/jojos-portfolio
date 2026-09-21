@@ -641,6 +641,37 @@ body.light-mode .contact-form textarea::placeholder {
   box-shadow: 0 10px 20px rgba(201, 166, 104, 0.35);
 }
 
+.form-notification {
+  position: fixed;
+  right: 24px;
+  bottom: 28px;
+  z-index: 1000;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: rgba(31, 35, 59, 0.96);
+  color: var(--cream);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+  font-size: 0.9rem;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.form-notification.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.light-mode .form-notification {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--indigo);
+  border: 1px solid rgba(40, 43, 74, 0.12);
+}
+
 /* ---------- Status bar footer ---------- */
 .statusbar {
   border-top: 1px solid rgba(238, 235, 218, 0.15);
